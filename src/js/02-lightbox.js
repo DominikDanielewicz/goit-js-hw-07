@@ -6,26 +6,16 @@ import { galleryItems } from "./gallery-items.js";
 const galleryBox = document.querySelector(".gallery");
 
 function createGallery() {
-  const previewImages = galleryItems.map(
-    (previewImage) => previewImage.preview
-  );
-  const originalImages = galleryItems.map(
-    (originalImage) => originalImage.original
-  );
-  const imagesDescriptions = galleryItems.map(
-    (imageDescription) => imageDescription.description
-  );
-
-  for (let i = 0; i < galleryItems.length; i++) {
+  for (const { preview, original, description } of galleryItems) {
     const galleryItem = document.createElement("a");
     const galleryImg = document.createElement("img");
     galleryItem.classList.add("gallery__item");
     galleryImg.classList.add("gallery__image");
     galleryBox.append(galleryItem);
     galleryItem.append(galleryImg);
-    galleryItem.setAttribute("href", `${originalImages[i]}`);
-    galleryImg.setAttribute("src", `${previewImages[i]}`);
-    galleryImg.setAttribute("alt", `${imagesDescriptions[i]}`);
+    galleryItem.setAttribute("href", `${original}`);
+    galleryImg.setAttribute("src", `${preview}`);
+    galleryImg.setAttribute("alt", `${description}`);
   }
 }
 
